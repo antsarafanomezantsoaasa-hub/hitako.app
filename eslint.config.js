@@ -32,7 +32,12 @@ export default tseslint.config(
           ],
         },
       ],
+      // React Refresh: warn when components export non-components.
+      // This helps HMR catch common mistakes, but is non-critical.
       "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
+      // Type safety: no implicit `any` — catch escapes early.
+      // If you have a legitimate use, use `eslint-disable-next-line @typescript-eslint/no-explicit-any`
+      "@typescript-eslint/no-explicit-any": "error",
       "@typescript-eslint/no-unused-vars": "off",
     },
   },
