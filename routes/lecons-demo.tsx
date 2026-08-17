@@ -76,7 +76,9 @@ const CATEGORIES: Category[] = [
     emoji: "🔥",
     title: "Motivation",
     blurb: "De courtes leçons pour rester motivé et construire une vraie habitude d'apprentissage.",
-    meta: "Bientôt disponible",
+    meta: "4 leçons disponibles",
+    href: "/motivation",
+    cta: "Explorer",
     icon: Flame,
   },
   {
