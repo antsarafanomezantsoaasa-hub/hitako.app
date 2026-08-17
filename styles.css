@@ -1,0 +1,628 @@
+@import "tailwindcss" source(none);
+@source "../src";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+  --radius-3xl: calc(var(--radius) + 12px);
+
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-display: "Sora", "Inter", ui-sans-serif, system-ui, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-glow: var(--primary-glow);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+}
+
+:root {
+  --radius: 0.875rem;
+
+  /* HiTako brand palette (from logo) */
+  --brand-deep: oklch(0.52 0.24 262);
+  --brand-sky: oklch(0.78 0.15 230);
+  --brand-wave: oklch(0.88 0.09 220);
+
+  /* Light mode — polished, high-contrast, purpose-built (not inverted dark). */
+  --background: oklch(0.985 0.006 240);
+  --foreground: oklch(0.19 0.04 262);
+  --ink: oklch(0.15 0.05 262);
+  --ink-soft: oklch(0.38 0.03 260);
+
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.17 0.04 262);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--foreground);
+
+  --primary: var(--brand-deep);
+  --primary-foreground: oklch(0.99 0.005 240);
+  --primary-glow: var(--brand-sky);
+
+  --secondary: oklch(0.955 0.022 232);
+  --secondary-foreground: var(--brand-deep);
+
+  --muted: oklch(0.958 0.014 240);
+  --muted-foreground: oklch(0.42 0.03 258);
+
+  --accent: oklch(0.93 0.06 225);
+  --accent-foreground: var(--brand-deep);
+
+  --destructive: oklch(0.58 0.22 27);
+  --destructive-foreground: oklch(1 0 0);
+
+  --border: oklch(0.9 0.02 240);
+  --input: oklch(0.9 0.02 240);
+  --ring: var(--brand-sky);
+
+  --surface-glass: oklch(1 0 0 / 0.72);
+
+  /* Member-area canvas: airy paper with a whisper of brand tint */
+  --member-canvas: oklch(0.975 0.012 235);
+  --member-canvas-glow:
+    radial-gradient(600px at 0% 0%, oklch(0.78 0.15 230 / 0.10), transparent 60%),
+    radial-gradient(800px at 100% 0%, oklch(0.62 0.2 262 / 0.06), transparent 60%);
+
+  --gradient-brand: linear-gradient(135deg, var(--brand-deep) 0%, var(--brand-sky) 100%);
+  --gradient-soft: linear-gradient(180deg, oklch(0.98 0.02 235) 0%, oklch(1 0 0) 100%);
+  --gradient-wave: linear-gradient(90deg, var(--brand-deep), var(--brand-sky), var(--brand-wave));
+  --gradient-hero: radial-gradient(ellipse at top right, oklch(0.85 0.13 225 / 0.35), transparent 60%),
+                   radial-gradient(ellipse at bottom left, oklch(0.62 0.2 262 / 0.18), transparent 55%);
+
+  --shadow-elegant: 0 24px 60px -20px color-mix(in oklab, var(--brand-deep) 22%, transparent);
+  --shadow-glow: 0 0 60px color-mix(in oklab, var(--brand-sky) 40%, transparent);
+  --shadow-card: 0 6px 24px -12px color-mix(in oklab, var(--brand-deep) 18%, transparent),
+                 0 1px 0 0 oklch(1 0 0 / 0.6) inset;
+}
+
+
+.dark {
+  /* Deep, cinematic navy — richer than pure indigo, softer on the eyes */
+  --background: oklch(0.16 0.035 260);
+  --foreground: oklch(0.97 0.008 240);
+  --ink: oklch(0.98 0.006 240);
+  --ink-soft: oklch(0.78 0.025 245);
+
+  /* Elevated surfaces with subtle lift over the background */
+  --card: oklch(0.215 0.04 260);
+  --card-foreground: oklch(0.97 0.008 240);
+  --popover: oklch(0.225 0.042 260);
+  --popover-foreground: oklch(0.97 0.008 240);
+
+  /* Brighter, more luminous brand accents for dark backgrounds */
+  --primary: oklch(0.82 0.16 228);
+  --primary-foreground: oklch(0.15 0.04 262);
+  --primary-glow: oklch(0.72 0.2 250);
+
+  --secondary: oklch(0.27 0.05 260);
+  --secondary-foreground: oklch(0.97 0.008 240);
+  --muted: oklch(0.24 0.035 260);
+  --muted-foreground: oklch(0.74 0.025 248);
+  --accent: oklch(0.34 0.09 245);
+  --accent-foreground: oklch(0.98 0.006 240);
+
+  --destructive: oklch(0.68 0.2 25);
+  --destructive-foreground: oklch(0.98 0 0);
+
+  --border: oklch(1 0 0 / 10%);
+  --input: oklch(1 0 0 / 14%);
+  --ring: oklch(0.82 0.16 228);
+
+  --surface-glass: oklch(0.22 0.045 260 / 0.65);
+
+  --gradient-brand: linear-gradient(135deg, oklch(0.62 0.22 262) 0%, oklch(0.82 0.16 228) 100%);
+  --gradient-soft: linear-gradient(180deg, oklch(0.185 0.04 260) 0%, oklch(0.16 0.035 260) 100%);
+  --gradient-wave: linear-gradient(90deg, oklch(0.62 0.22 262), oklch(0.78 0.15 228), oklch(0.88 0.09 220));
+  --gradient-hero: radial-gradient(ellipse at top right, oklch(0.62 0.22 262 / 0.45), transparent 60%),
+                   radial-gradient(ellipse at bottom left, oklch(0.78 0.15 228 / 0.22), transparent 55%),
+                   radial-gradient(ellipse at center, oklch(0.4 0.1 255 / 0.15), transparent 70%);
+
+  --shadow-elegant: 0 24px 60px -20px oklch(0 0 0 / 0.75), 0 0 0 1px oklch(1 0 0 / 4%);
+  --shadow-glow: 0 0 80px color-mix(in oklab, oklch(0.72 0.2 250) 45%, transparent);
+  --shadow-card: 0 8px 30px -10px oklch(0 0 0 / 0.6), 0 1px 0 0 oklch(1 0 0 / 5%) inset;
+
+  /* Member-area canvas in dark mode — the existing deep navy */
+  --member-canvas: oklch(0.14 0.03 260);
+  --member-canvas-glow:
+    radial-gradient(600px at 0% 0%, oklch(0.5 0.18 230 / 0.10), transparent 60%),
+    radial-gradient(800px at 100% 0%, oklch(0.4 0.14 258 / 0.08), transparent 60%);
+}
+
+
+/* Refined dark-mode surface treatments */
+.dark body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -10%, oklch(0.32 0.12 258 / 0.35), transparent 60%),
+    radial-gradient(ellipse 60% 40% at 100% 0%, oklch(0.5 0.18 230 / 0.18), transparent 55%);
+  background-attachment: fixed;
+}
+/* Slightly lift bordered cards so they read against the deep bg */
+.dark .bg-card { background-color: color-mix(in oklab, var(--card) 96%, white 4%); }
+
+@layer base {
+  * { border-color: var(--color-border); }
+  html {
+    scroll-behavior: smooth;
+    /* Anchor jumps clear the fixed 72px header */
+    scroll-padding-top: 80px;
+    -webkit-text-size-adjust: 100%;
+    text-size-adjust: 100%;
+  }
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-feature-settings: "ss01", "cv11";
+    transition: background-color 0.35s ease, color 0.35s ease;
+    /* Kill blue tap flash on iOS/Android for a native, fluid feel */
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+  h1, h2, h3, h4 {
+    font-family: var(--font-display);
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  /* Larger, comfortable tap targets on touch devices */
+  @media (hover: none) and (pointer: coarse) {
+    a, button, [role="button"] { touch-action: manipulation; }
+  }
+  /* Respect iOS safe areas for floating CTA / fixed elements */
+  :root {
+    --safe-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  /* Fluid display heading — never overflows on small screens */
+  .hero-title {
+    font-size: clamp(2.25rem, 8vw, 4.75rem);
+    line-height: 1.02;
+  }
+  /* Momentum scroll for any horizontal scroller (carousels) */
+  .snap-x { -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+}
+
+@utility bg-gradient-brand { background-image: var(--gradient-brand); }
+@utility bg-gradient-soft { background-image: var(--gradient-soft); }
+@utility bg-gradient-wave { background-image: var(--gradient-wave); }
+@utility bg-gradient-hero { background-image: var(--gradient-hero); }
+@utility bg-surface-glass { background-color: var(--surface-glass); }
+@utility text-gradient-brand {
+  background-image: var(--gradient-brand);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+@utility shadow-elegant { box-shadow: var(--shadow-elegant); }
+@utility shadow-glow { box-shadow: var(--shadow-glow); }
+@utility shadow-card { box-shadow: var(--shadow-card); }
+
+/* Member-space canvas — theme-aware background used by the dashboard shell.
+   Light mode: soft, airy blue-tinted paper with a hint of warmth.
+   Dark mode: the existing deep navy. */
+@utility bg-member-canvas { background-color: var(--member-canvas); }
+@utility bg-member-canvas-glow { background-image: var(--member-canvas-glow); }
+
+
+@utility wave-divider {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0; right: 0; bottom: -1px;
+    height: 3px;
+    background: var(--gradient-wave);
+    border-radius: 999px;
+    opacity: 0.75;
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-14px); }
+}
+@keyframes phone-float {
+  0%, 100% { transform: translateY(0px) rotate(-0.6deg); }
+  50% { transform: translateY(-18px) rotate(0.8deg); }
+}
+@keyframes glow-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.55; }
+  50% { transform: scale(1.15); opacity: 0.85; }
+}
+@keyframes shine-sweep {
+  0% { transform: translateX(-140%) skewX(-18deg); opacity: 0; }
+  12% { opacity: 0.5; }
+  45% { opacity: 0.3; }
+  60% { opacity: 0; }
+  100% { transform: translateX(240%) skewX(-18deg); opacity: 0; }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+@keyframes fade-up {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes slide-down {
+  from { opacity: 0; transform: translateY(-8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.9); }
+  100% { opacity: 1; transform: scale(1); }
+}
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 color-mix(in oklab, var(--brand-sky) 55%, transparent); }
+  70% { box-shadow: 0 0 0 18px oklch(0 0 0 / 0); }
+  100% { box-shadow: 0 0 0 0 oklch(0 0 0 / 0); }
+}
+@keyframes wave-flow {
+  0% { stroke-dashoffset: 0; }
+  100% { stroke-dashoffset: -48; }
+}
+@keyframes splash-bar {
+  0% { transform: translateX(-100%); }
+  60% { transform: translateX(40%); }
+  100% { transform: translateX(115%); }
+}
+@keyframes splash-in {
+  from { opacity: 0; transform: translateY(10px) scale(0.98); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@utility animate-float { animation: float-slow 6s ease-in-out infinite; }
+@utility animate-phone-float { animation: phone-float 7s ease-in-out infinite; }
+@utility animate-glow-pulse { animation: glow-pulse 4.5s ease-in-out infinite; }
+@utility animate-shine-sweep { animation: shine-sweep 5.5s ease-in-out infinite; }
+@utility animate-fade-up { animation: fade-up 0.8s ease-out both; }
+@utility animate-fade-in-soft { animation: fade-in 0.5s ease-out both; }
+@utility animate-slide-down { animation: slide-down 0.25s ease-out both; }
+@utility animate-pop-in { animation: pop-in 0.35s cubic-bezier(0.22, 1, 0.36, 1) both; }
+@utility animate-pulse-ring { animation: pulse-ring 2s ease-out infinite; }
+@utility animate-wave-flow { animation: wave-flow 1.8s linear infinite; }
+@utility animate-splash-bar { animation: splash-bar 1.5s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+@utility animate-splash-in { animation: splash-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@utility skeleton {
+  background: linear-gradient(
+    90deg,
+    color-mix(in oklab, var(--muted) 85%, transparent) 0%,
+    color-mix(in oklab, var(--muted-foreground) 15%, var(--muted)) 50%,
+    color-mix(in oklab, var(--muted) 85%, transparent) 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.6s linear infinite;
+  border-radius: var(--radius);
+}
+
+@utility reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s ease-out, transform 0.7s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@utility reveal-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ================================================================
+   HiTCards (game arena flashcards) — 3D card flip primitives.
+   Used by src/routes/jeux_.flashcards.tsx only.
+   ================================================================ */
+@utility card3d { perspective: 1400px; }
+@utility card3d-inner {
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+@utility card3d-flipped { transform: rotateY(180deg); }
+@utility card3d-face {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+@utility card3d-back { transform: rotateY(180deg); }
+
+/* The extra flourish during an active flip (see TURN_MS / `turning` state in
+   jeux_.flashcards.tsx): a slight mid-turn shrink on top of the base
+   rotateY transition above, so the card reads as turning in space rather
+   than just cross-fading between faces. Duration matches TURN_MS (640ms). */
+@keyframes card-flip-to-back {
+  0% { transform: rotateY(0deg) scale(1); }
+  50% { transform: rotateY(90deg) scale(0.92); }
+  100% { transform: rotateY(180deg) scale(1); }
+}
+@utility animate-flip-to-back { animation: card-flip-to-back 0.64s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes card-flip-to-front {
+  0% { transform: rotateY(180deg) scale(1); }
+  50% { transform: rotateY(90deg) scale(0.92); }
+  100% { transform: rotateY(0deg) scale(1); }
+}
+@utility animate-flip-to-front { animation: card-flip-to-front 0.64s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes card-deal {
+  from { opacity: 0; transform: translateY(18px) scale(0.96) rotate(-1.5deg); }
+  to { opacity: 1; transform: translateY(0) scale(1) rotate(0deg); }
+}
+@utility animate-card-deal { animation: card-deal 0.4s cubic-bezier(0.22, 1, 0.36, 1) both; }
+
+@keyframes card-nudge {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-7px); }
+  75% { transform: translateX(7px); }
+}
+@utility animate-card-nudge { animation: card-nudge 0.4s ease-in-out both; }
+
+/* Card exits after an answer: "known" cards fly up and away (mastered),
+   "unknown" cards dip back down into the deck (returning for later review). */
+@keyframes card-master-out {
+  0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-46px) scale(0.82) rotate(3deg); opacity: 0; }
+}
+@utility animate-card-master-out { animation: card-master-out 0.42s cubic-bezier(0.4, 0, 0.2, 1) both; }
+
+@keyframes card-return-out {
+  0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+  40% { transform: translateY(6px) scale(0.98) rotate(-2deg); opacity: 1; }
+  100% { transform: translateY(52px) scale(0.8) rotate(-6deg); opacity: 0; }
+}
+@utility animate-card-return-out { animation: card-return-out 0.42s cubic-bezier(0.4, 0, 0.2, 1) both; }
+
+/* ================================================================
+   Member app "playful" layer — used by the /mon-espace and /zero
+   app shell + lesson path. Brand colours only (deep indigo → sky),
+   just rendered as chunky, candy-style game UI.
+   ================================================================ */
+:root {
+  --sticker-shadow: 0 6px 0 0 color-mix(in oklab, var(--brand-deep) 55%, transparent),
+                    0 12px 24px -8px color-mix(in oklab, var(--brand-deep) 45%, transparent);
+  --sticker-shadow-soft: 0 4px 0 0 color-mix(in oklab, var(--brand-deep) 14%, transparent),
+                         0 10px 20px -12px color-mix(in oklab, var(--brand-deep) 30%, transparent);
+  --gradient-node: linear-gradient(180deg,
+    color-mix(in oklab, var(--brand-sky) 70%, white 30%) 0%,
+    var(--brand-sky) 38%,
+    var(--brand-deep) 100%);
+  --gradient-node-done: linear-gradient(180deg,
+    color-mix(in oklab, var(--brand-wave) 60%, white 40%) 0%,
+    var(--brand-wave) 40%,
+    color-mix(in oklab, var(--brand-deep) 70%, var(--brand-sky)) 100%);
+  --playground-sky: radial-gradient(120% 60% at 50% -10%, color-mix(in oklab, var(--brand-sky) 26%, transparent), transparent 70%),
+                    radial-gradient(90% 45% at 0% 20%, color-mix(in oklab, var(--brand-wave) 30%, transparent), transparent 65%),
+                    radial-gradient(90% 45% at 100% 45%, color-mix(in oklab, var(--brand-deep) 12%, transparent), transparent 65%);
+}
+.dark {
+  --sticker-shadow: 0 6px 0 0 oklch(0 0 0 / 0.45), 0 12px 24px -8px oklch(0 0 0 / 0.6);
+  --sticker-shadow-soft: 0 4px 0 0 oklch(0 0 0 / 0.35), 0 10px 20px -12px oklch(0 0 0 / 0.5);
+}
+
+@utility shadow-sticker { box-shadow: var(--sticker-shadow); }
+@utility shadow-sticker-soft { box-shadow: var(--sticker-shadow-soft); }
+@utility bg-node { background-image: var(--gradient-node); }
+@utility bg-node-done { background-image: var(--gradient-node-done); }
+@utility bg-playground { background-image: var(--playground-sky); }
+
+/* Glossy highlight used on candy-style circular nodes */
+@utility node-gloss {
+  position: relative;
+  &::after {
+    content: "";
+    position: absolute;
+    left: 16%;
+    right: 22%;
+    top: 10%;
+    height: 30%;
+    border-radius: 999px;
+    background: linear-gradient(180deg, oklch(1 0 0 / 0.65), oklch(1 0 0 / 0));
+    pointer-events: none;
+  }
+}
+
+@keyframes node-bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-7px); }
+}
+@utility animate-node-bob { animation: node-bob 2.4s ease-in-out infinite; }
+
+@keyframes sparkle-spin {
+  0% { transform: rotate(0deg) scale(1); opacity: 0.55; }
+  50% { transform: rotate(180deg) scale(1.12); opacity: 1; }
+  100% { transform: rotate(360deg) scale(1); opacity: 0.55; }
+}
+@utility animate-sparkle-spin { animation: sparkle-spin 6s linear infinite; }
+
+@keyframes drift {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(10px, -18px, 0); }
+}
+@utility animate-drift { animation: drift 11s ease-in-out infinite; }
+
+/* Playful doodle wallpaper behind the lesson path (transparent tile, brand blue).
+   The image itself is set inline via `style={{ backgroundImage }}` on the element
+   using this class (see MemberAppShell.tsx) — it's imported from @/assets so Vite
+   bundles it with a real, resolvable URL. Do NOT hardcode a url() here again: a
+   `/__l5e/assets-v1/...` path only resolves inside the Lovable live-editor preview,
+   not in an exported/built app, which is why the tiles previously looked "missing". */
+@utility bg-playground-doodles {
+  background-repeat: repeat;
+  background-size: 360px 360px;
+  /* Softened + slightly defocused so the doodles stay charming wallpaper and
+     never compete with the lesson nodes, chapter cards or body copy sitting
+     on top of them. */
+  opacity: 0.3;
+  filter: blur(0.6px);
+}
+.dark .bg-playground-doodles {
+  opacity: 0.1;
+}
+
+/* Frosted veil laid over the doodle wallpaper: lifts contrast for everything
+   the member screens render above it while keeping the pattern visible. */
+@utility bg-playground-veil {
+  background-image:
+    radial-gradient(120% 70% at 50% 40%,
+      color-mix(in oklab, var(--member-canvas) 58%, transparent),
+      color-mix(in oklab, var(--member-canvas) 26%, transparent) 70%,
+      transparent 100%),
+    linear-gradient(180deg,
+      color-mix(in oklab, var(--member-canvas) 42%, transparent),
+      color-mix(in oklab, var(--member-canvas) 24%, transparent));
+}
+
+/* Soft glow puddle behind a lesson node so the candy button reads instantly
+   against the patterned canvas. */
+@utility node-halo {
+  &::before {
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 150%;
+    height: 150%;
+    transform: translate(-50%, -50%);
+    border-radius: 999px;
+    background: radial-gradient(closest-side,
+      color-mix(in oklab, var(--member-canvas) 92%, transparent),
+      transparent 100%);
+    pointer-events: none;
+    z-index: -1;
+  }
+}
+
+/* Momentum + smoothness for the lesson trail scroller.
+   Deliberately NO `-webkit-overflow-scrolling: touch` and NO `translateZ(0)`:
+   on iOS both force the pane into a legacy/promoted compositing path that
+   fails to raster tiles while flinging a tall trail, which is exactly what
+   produced the big blank bands under the lesson nodes. Modern iOS/Android
+   already give native momentum on a plain `overflow-y: auto` pane. */
+@utility scroll-smooth-touch {
+  scroll-behavior: smooth;
+  overscroll-behavior-y: contain;
+  /* Browser scroll anchoring fights the manual anchoring done in
+     LessonPath when a new batch is prepended above the viewport. */
+  overflow-anchor: none;
+  scrollbar-width: none;
+  &::-webkit-scrollbar { display: none; }
+}
+
+
+/* ---------------------------------------------------------------------------
+   Member-area viewport lock (fixes the blank white band under the tab bar)
+
+   The member shell (/mon-espace, /zero, lessons, /jeux) is an app-style,
+   fixed-height layout. Two things used to leak a white strip below the bottom
+   tab bar on phones:
+     1. the wrapper used `min-h-screen` (100vh = LARGEST viewport on mobile)
+        while the shell itself used 100dvh (current viewport) — so the document
+        was always taller than the shell by the URL-bar height;
+     2. the document itself stayed scrollable, so a rubber-band / URL-bar
+        collapse revealed the page background under the fixed shell.
+
+   `.member-viewport-lock` (set on <html>/<body> while a member route is
+   active) removes document scrolling entirely, and `--app-vh` — measured from
+   visualViewport on every resize — gives an exact pixel height that never lags
+   behind dvh on iOS Safari or Android Chrome.
+--------------------------------------------------------------------------- */
+html.member-viewport-lock,
+body.member-viewport-lock {
+  height: var(--app-vh, 100dvh);
+  min-height: 0;
+  max-height: var(--app-vh, 100dvh);
+  overflow: hidden;
+  overscroll-behavior: none;
+  position: relative;
+}
+
+@utility app-viewport {
+  height: 100vh; /* fallback for very old browsers */
+  height: 100dvh;
+  height: var(--app-vh, 100dvh);
+  max-height: var(--app-vh, 100dvh);
+}
+
+@utility app-viewport-min {
+  min-height: 100vh;
+  min-height: 100dvh;
+  min-height: var(--app-vh, 100dvh);
+}
+
+/* --- Free "welcome bonus" lessons (/zero: Leçons 01 & 02) ---------------
+   Attractive, clickable treatment for the two free lessons: a soft golden
+   halo that breathes, a gentle wobble to invite the tap, and a shimmer
+   sweep across the BONUS badge. Purely presentational. */
+@keyframes bonus-glow {
+  0%, 100% {
+    box-shadow:
+      0 0 0 0 color-mix(in oklab, var(--brand-sky, oklch(0.82 0.16 228)) 45%, transparent),
+      0 10px 22px -8px color-mix(in oklab, var(--primary) 55%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 12px color-mix(in oklab, var(--brand-sky, oklch(0.82 0.16 228)) 0%, transparent),
+      0 14px 26px -6px color-mix(in oklab, var(--primary) 70%, transparent);
+  }
+}
+@keyframes bonus-wiggle {
+  0%, 88%, 100% { transform: rotate(0deg) scale(1); }
+  91% { transform: rotate(-4deg) scale(1.05); }
+  94% { transform: rotate(4deg) scale(1.05); }
+  97% { transform: rotate(-2deg) scale(1.02); }
+}
+@keyframes bonus-shimmer {
+  0% { background-position: -140% 0; }
+  60%, 100% { background-position: 240% 0; }
+}
+@utility animate-bonus-glow { animation: bonus-glow 2.2s ease-in-out infinite; }
+@utility animate-bonus-wiggle { animation: bonus-wiggle 3.4s ease-in-out infinite; }
+@utility bonus-shimmer {
+  position: relative;
+  overflow: hidden;
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      110deg,
+      transparent 20%,
+      oklch(1 0 0 / 0.55) 45%,
+      transparent 70%
+    );
+    background-size: 220% 100%;
+    animation: bonus-shimmer 2.6s ease-in-out infinite;
+    pointer-events: none;
+  }
+}
